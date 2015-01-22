@@ -190,6 +190,9 @@ class SpiderInstance
       next_urls = @next_urls.pop
       tmp_n_u = {}
       next_urls.each do |prior_url, urls|
+        unless urls.is_a?(Array)
+          urls = urls.split
+        end
         urls.map do |a_url|
           [a_url, (URI.parse(a_url) rescue nil)]
         end.select do |a_url, parsed_url|
